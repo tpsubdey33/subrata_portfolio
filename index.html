@@ -280,9 +280,12 @@
             background: radial-gradient(circle, transparent 60%, var(--dark) 100%);
         }
 
-        .profile-img .avatar {
-            font-size: 8rem;
-            color: rgba(255, 255, 255, 0.8);
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
         }
 
         .btn {
@@ -1073,9 +1076,7 @@
         </div>
         <div class="hero-image">
             <div class="profile-img floating">
-                <div class="avatar">
-                    <i class="fas fa-user"></i>
-                </div>
+                <img src="https://i.ibb.co/fVVDpgLc/IMG-20250616-135945-Copy.jpg" alt="Subrata Dey - React Native Developer">
             </div>
         </div>
     </section>
@@ -1140,7 +1141,7 @@
                 <p>React Native Developer at EJOB INDIA PVT.LTD</p>
                 
                 <div class="resume-btn-container">
-                    <a href="https://drive.google.com/uc?export=download&id=10dTKGegvwwd9J6XSBA1qvHigENBQDqT5" class="btn btn-download pulse">
+                    <a href="https://drive.google.com/uc?export=download&id=1Xn9WOA-5TEpmVUKsR9r78DrYKK8ZpjVG" class="btn btn-download pulse">
                         <i class="fas fa-download"></i> Download Resume
                     </a>
                 </div>
