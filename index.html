@@ -1,1599 +1,1987 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Subrata Dey - React Native Developer</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@700&display=swap" rel="stylesheet">
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #1e293b;
-            --accent: #8b5cf6;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --dark: #0f172a;
-            --success: #10b981;
-            --whatsapp: #25D366;
-            --transition: all 0.4s ease;
-        }
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #1e293b;
+        --accent: #8b5cf6;
+        --light: #f8fafc;
+        --gray: #64748b;
+        --dark: #0f172a;
+        --success: #10b981;
+        --whatsapp: #25d366;
+        --transition: all 0.4s ease;
+      }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-            padding-bottom: 60px;
-        }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: var(--light);
+        line-height: 1.6;
+        overflow-x: hidden;
+        position: relative;
+        padding-bottom: 60px;
+      }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
 
-        ::-webkit-scrollbar-track {
-            background: var(--dark);
-        }
+      ::-webkit-scrollbar-track {
+        background: var(--dark);
+      }
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 5px;
-        }
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 5px;
+      }
 
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 5%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2rem 5%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+      }
 
-        .navbar.scrolled {
-            padding: 0.8rem 5%;
-            background: rgba(15, 23, 42, 0.98);
-        }
+      .navbar.scrolled {
+        padding: 0.8rem 5%;
+        background: rgba(15, 23, 42, 0.98);
+      }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--light);
-            text-decoration: none;
-            font-family: 'Raleway', sans-serif;
-            display: flex;
-            align-items: center;
-        }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--light);
+        text-decoration: none;
+        font-family: "Raleway", sans-serif;
+        display: flex;
+        align-items: center;
+      }
 
-        .logo span {
-            color: var(--primary);
-        }
+      .logo span {
+        color: var(--primary);
+      }
 
-        .logo i {
-            margin-right: 10px;
-            color: var(--primary);
-        }
+      .logo i {
+        margin-right: 10px;
+        color: var(--primary);
+      }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
 
-        .nav-links a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: var(--transition);
-            position: relative;
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: center;
-        }
+      .nav-links a {
+        color: var(--light);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: var(--transition);
+        position: relative;
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+      }
 
-        .nav-links a i {
-            margin-right: 8px;
-            font-size: 1.1rem;
-            transition: var(--transition);
-        }
+      .nav-links a i {
+        margin-right: 8px;
+        font-size: 1.1rem;
+        transition: var(--transition);
+      }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+      .nav-links a:hover {
+        color: var(--primary);
+      }
 
-        .nav-links a:hover i {
-            transform: translateY(-3px);
-        }
+      .nav-links a:hover i {
+        transform: translateY(-3px);
+      }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: var(--transition);
+      }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
 
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--light);
-            z-index: 1100;
-        }
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: var(--light);
+        z-index: 1100;
+      }
 
-        /* Sections */
-        section {
-            min-height: 100vh;
-            padding: 8rem 5% 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+      /* Sections */
+      section {
+        min-height: 100vh;
+        padding: 8rem 5% 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
 
+      .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        text-align: center;
+        position: relative;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+
+      .section-title.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+
+      /* Hero Section with Typewriter Effect */
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+      }
+
+      .hero-content {
+        flex: 1;
+        max-width: 645px;
+      }
+
+      .typewriter {
+        margin-bottom: 1.5rem;
+      }
+
+      .typewriter h1 {
+        font-size: 3.2rem;
+        line-height: 1.2;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0;
+        padding: 0;
+        position: relative;
+      }
+
+      .typewriter h1:first-child {
+        animation: typing 1.8s steps(20, end) forwards;
+        width: 0;
+      }
+
+      .typewriter h1:last-child {
+        animation: typing 2s steps(25, end) 2s forwards;
+        width: 0;
+        color: var(--primary);
+        margin-top: 10px;
+      }
+
+      .typewriter h1::after {
+        content: "|";
+        position: absolute;
+        right: 0;
+        animation: blink 1s infinite;
+      }
+
+      .typewriter h1.typing-complete::after {
+        display: none;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: var(--gray);
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 1s ease 4s forwards;
+      }
+
+      .hero-btns {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 1s ease 4.5s forwards;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .profile-img {
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        border: 5px solid var(--primary);
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
+        opacity: 0;
+        transform: scale(0.8);
+        animation: scaleIn 1s ease 3s forwards;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%);
+      }
+
+      .profile-img::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle, transparent 60%, var(--dark) 100%);
+      }
+
+      .profile-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: relative;
+        z-index: 2;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.8rem 2rem;
+        background: var(--primary);
+        color: white;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        border: 2px solid var(--primary);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        gap: 8px;
+      }
+
+      .btn:hover {
+        background: transparent;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+      }
+
+      .btn-outline {
+        background: transparent;
+      }
+
+      .btn-outline:hover {
+        background: var(--primary);
+      }
+
+      .btn-download {
+        background: linear-gradient(45deg, var(--primary), var(--accent));
+        border: none;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .btn-download::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+        z-index: -1;
+      }
+
+      .btn-download:hover::before {
+        left: 100%;
+      }
+
+      /* About Section */
+      .about-section {
+        background: linear-gradient(to bottom, #0f172a, #1e293b);
+      }
+
+      .about-container {
+        display: flex;
+        gap: 3rem;
+      }
+
+      .about-content {
+        flex: 1;
+        background: rgba(30, 41, 59, 0.7);
+        padding: 2.5rem;
+        border-radius: 15px;
+        border: 1px solid rgba(100, 116, 139, 0.2);
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+
+      .about-content.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .about-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .about-header h2 {
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+        color: var(--primary);
+      }
+
+      .about-header h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        color: var(--gray);
+      }
+
+      .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        justify-content: center;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        background: rgba(15, 23, 42, 0.3);
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+      }
+
+      .contact-item i {
+        color: var(--primary);
+      }
+
+      .about-content h4 {
+        font-size: 1.3rem;
+        margin: 1.5rem 0 1rem;
+        color: var(--primary);
+        position: relative;
+        padding-bottom: 0.5rem;
+      }
+
+      .about-content h4::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--primary);
+      }
+
+      .experience-item,
+      .education-item {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px dashed rgba(100, 116, 139, 0.3);
+      }
+
+      .experience-item:last-child,
+      .education-item:last-child {
+        border-bottom: none;
+      }
+
+      .experience-item h5,
+      .education-item h5 {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .experience-item h5 i,
+      .education-item h5 i {
+        color: var(--primary);
+      }
+
+      .experience-item p,
+      .education-item p {
+        color: var(--gray);
+        margin-bottom: 0.5rem;
+        padding-left: 28px;
+      }
+
+      .experience-item ul {
+        padding-left: 1.5rem;
+      }
+
+      .experience-item li {
+        margin-bottom: 0.5rem;
+        color: #cbd5e1;
+        position: relative;
+        padding-left: 20px;
+      }
+
+      .experience-item li::before {
+        content: "▹";
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+      }
+
+      .resume-btn-container {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      /* Skills Section */
+      .skills-section {
+        background: linear-gradient(to bottom, #1e293b, #0f172a);
+      }
+
+      .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .skill-card {
+        background: rgba(30, 41, 59, 0.7);
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: var(--transition);
+        border: 1px solid rgba(100, 116, 139, 0.2);
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .skill-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .skill-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--primary);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .skill-card i {
+        font-size: 3rem;
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+      }
+
+      .skill-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .skill-card p {
+        color: #cbd5e1;
+      }
+
+      .skill-level {
+        height: 8px;
+        background: rgba(100, 116, 139, 0.2);
+        border-radius: 4px;
+        margin-top: 1.5rem;
+        overflow: hidden;
+      }
+
+      .skill-progress {
+        height: 100%;
+        background: var(--primary);
+        border-radius: 4px;
+        transition: width 1.5s ease;
+      }
+
+      /* Projects Section */
+      .projects-section {
+        background: linear-gradient(to bottom, #0f172a, #1e293b);
+      }
+
+      .projects-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 2.5rem;
+        margin-top: 2rem;
+      }
+
+      .project-card {
+        background: rgba(30, 41, 59, 0.7);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: var(--transition);
+        border: 1px solid rgba(100, 116, 139, 0.2);
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .project-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--primary);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .app-collage {
+        height: 250px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 4px;
+        overflow: hidden;
+      }
+
+      .app-collage img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .app-collage img:hover {
+        transform: scale(1.05);
+      }
+
+      .collage-large {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      .project-content {
+        padding: 1.5rem;
+      }
+
+      .project-content h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .project-content h3 i {
+        color: var(--primary);
+      }
+
+      .project-content p {
+        color: #cbd5e1;
+        margin-bottom: 1.2rem;
+      }
+
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .tech {
+        background: rgba(37, 99, 235, 0.15);
+        color: var(--primary);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .tech i {
+        font-size: 0.9rem;
+      }
+
+      .app-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .app-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .app-link:hover {
+        color: var(--light);
+        transform: translateY(-3px);
+      }
+
+      .project-note {
+        margin-top: 15px;
+        padding: 8px 12px;
+        background: rgba(255, 193, 7, 0.15);
+        border-radius: 8px;
+        color: #ffc107;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        background: linear-gradient(to bottom, #1e293b, #0f172a);
+      }
+
+      .contact-container {
+        display: flex;
+        gap: 3rem;
+        margin-top: 2rem;
+      }
+
+      .contact-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .contact-card {
+        background: rgba(30, 41, 59, 0.7);
+        padding: 1.5rem;
+        border-radius: 15px;
+        border: 1px solid rgba(100, 116, 139, 0.2);
+        transition: var(--transition);
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .contact-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .contact-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .contact-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .contact-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      .contact-text h4 {
+        font-size: 1.2rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .contact-form {
+        flex: 1;
+        background: rgba(30, 41, 59, 0.7);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(100, 116, 139, 0.2);
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .contact-form.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem 1.2rem;
+        border-radius: 8px;
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid rgba(100, 116, 139, 0.3);
+        color: var(--light);
+        font-family: "Poppins", sans-serif;
+        transition: var(--transition);
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+      }
+
+      .form-group textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+
+      /* Footer */
+      footer {
+        background: rgba(15, 23, 42, 0.95);
+        padding: 2rem 5%;
+        text-align: center;
+        border-top: 1px solid rgba(100, 116, 139, 0.2);
+      }
+
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: rgba(100, 116, 139, 0.3);
+        color: var(--light);
+        font-size: 1.2rem;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        background: var(--primary);
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+      }
+
+      .copyright {
+        color: var(--gray);
+        font-size: 0.9rem;
+      }
+
+      /* WhatsApp Button */
+      .whatsapp-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        background: var(--whatsapp);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 100;
+        transition: var(--transition);
+        animation: pulse 2s infinite;
+      }
+
+      .whatsapp-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        animation: none;
+      }
+
+      /* Animations */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .floating {
+        animation: float 4s ease-in-out infinite;
+      }
+
+      .pulse {
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      /* Responsive */
+      @media (max-width: 1200px) {
+        .typewriter h1 {
+          font-size: 3rem;
+        }
         .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+          font-size: 2.3rem;
         }
+      }
 
-        .section-title.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-
-        /* Hero Section with Typewriter Effect */
+      @media (max-width: 992px) {
         .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 3rem;
+          flex-direction: column;
+          text-align: center;
         }
 
         .hero-content {
-            flex: 1;
-            max-width: 645px;
-        }
-
-        .typewriter {
-            margin-bottom: 1.5rem;
-        }
-
-        .typewriter h1 {
-            font-size: 3.2rem;
-            line-height: 1.2;
-            overflow: hidden;
-            white-space: nowrap;
-            margin: 0;
-            padding: 0;
-            position: relative;
-        }
-
-        .typewriter h1:first-child {
-            animation: typing 1.8s steps(20, end) forwards;
-            width: 0;
-        }
-
-        .typewriter h1:last-child {
-            animation: typing 2s steps(25, end) 2s forwards;
-            width: 0;
-            color: var(--primary);
-            margin-top: 10px;
-        }
-
-        .typewriter h1::after {
-            content: '|';
-            position: absolute;
-            right: 0;
-            animation: blink 1s infinite;
-        }
-
-        .typewriter h1.typing-complete::after {
-            display: none;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--gray);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s ease 4s forwards;
-        }
-
-        .hero-btns {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 1s ease 4.5s forwards;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        .profile-img {
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            border: 5px solid var(--primary);
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
-            opacity: 0;
-            transform: scale(0.8);
-            animation: scaleIn 1s ease 3s forwards;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%);
-        }
-
-        .profile-img::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle, transparent 60%, var(--dark) 100%);
-        }
-
-        .profile-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: relative;
-            z-index: 2;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.8rem 2rem;
-            background: var(--primary);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border: 2px solid var(--primary);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            gap: 8px;
-        }
-
-        .btn:hover {
-            background: transparent;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
-        }
-
-        .btn-outline {
-            background: transparent;
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-        }
-
-        .btn-download {
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            border: none;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .btn-download::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-            z-index: -1;
-        }
-
-        .btn-download:hover::before {
-            left: 100%;
-        }
-
-        /* About Section */
-        .about-section {
-            background: linear-gradient(to bottom, #0f172a, #1e293b);
+          margin-bottom: 3rem;
         }
 
         .about-container {
-            display: flex;
-            gap: 3rem;
-        }
-
-        .about-content {
-            flex: 1;
-            background: rgba(30, 41, 59, 0.7);
-            padding: 2.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(100, 116, 139, 0.2);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-
-        .about-content.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .about-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .about-header h2 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .about-header h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--gray);
-        }
-
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            justify-content: center;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-            background: rgba(15, 23, 42, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-        }
-
-        .contact-item i {
-            color: var(--primary);
-        }
-
-        .about-content h4 {
-            font-size: 1.3rem;
-            margin: 1.5rem 0 1rem;
-            color: var(--primary);
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .about-content h4::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary);
-        }
-
-        .experience-item, .education-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px dashed rgba(100, 116, 139, 0.3);
-        }
-
-        .experience-item:last-child, .education-item:last-child {
-            border-bottom: none;
-        }
-
-        .experience-item h5, .education-item h5 {
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .experience-item h5 i, .education-item h5 i {
-            color: var(--primary);
-        }
-
-        .experience-item p, .education-item p {
-            color: var(--gray);
-            margin-bottom: 0.5rem;
-            padding-left: 28px;
-        }
-
-        .experience-item ul {
-            padding-left: 1.5rem;
-        }
-
-        .experience-item li {
-            margin-bottom: 0.5rem;
-            color: #cbd5e1;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .experience-item li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-        }
-
-        .resume-btn-container {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        /* Skills Section */
-        .skills-section {
-            background: linear-gradient(to bottom, #1e293b, #0f172a);
-        }
-
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .skill-card {
-            background: rgba(30, 41, 59, 0.7);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid rgba(100, 116, 139, 0.2);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .skill-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .skill-card i {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .skill-card p {
-            color: #cbd5e1;
-        }
-
-        .skill-level {
-            height: 8px;
-            background: rgba(100, 116, 139, 0.2);
-            border-radius: 4px;
-            margin-top: 1.5rem;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: var(--primary);
-            border-radius: 4px;
-            transition: width 1.5s ease;
-        }
-
-        /* Projects Section */
-        .projects-section {
-            background: linear-gradient(to bottom, #0f172a, #1e293b);
-        }
-
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background: rgba(30, 41, 59, 0.7);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: var(--transition);
-            border: 1px solid rgba(100, 116, 139, 0.2);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .project-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .app-collage {
-            height: 250px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 4px;
-            overflow: hidden;
-        }
-
-        .app-collage img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .app-collage img:hover {
-            transform: scale(1.05);
-        }
-
-        .collage-large {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-content h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .project-content h3 i {
-            color: var(--primary);
-        }
-
-        .project-content p {
-            color: #cbd5e1;
-            margin-bottom: 1.2rem;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .tech {
-            background: rgba(37, 99, 235, 0.15);
-            color: var(--primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .tech i {
-            font-size: 0.9rem;
-        }
-
-        .app-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .app-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .app-link:hover {
-            color: var(--light);
-            transform: translateY(-3px);
-        }
-
-        .project-note {
-            margin-top: 15px;
-            padding: 8px 12px;
-            background: rgba(255, 193, 7, 0.15);
-            border-radius: 8px;
-            color: #ffc107;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: linear-gradient(to bottom, #1e293b, #0f172a);
+          flex-direction: column;
         }
 
         .contact-container {
-            display: flex;
-            gap: 3rem;
-            margin-top: 2rem;
+          flex-direction: column;
         }
 
-        .contact-info {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        .typewriter h1 {
+          font-size: 2.7rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: var(--dark);
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 2rem 0;
+          gap: 2.5rem;
+          clip-path: circle(0px at 90% -10%);
+          transition: all 0.8s ease;
         }
 
-        .contact-card {
-            background: rgba(30, 41, 59, 0.7);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(100, 116, 139, 0.2);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(30px);
+        .nav-links.active {
+          clip-path: circle(1500px at 90% -10%);
         }
 
-        .contact-card.animate {
-            opacity: 1;
-            transform: translateY(0);
+        .hamburger {
+          display: block;
         }
 
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        .typewriter h1 {
+          font-size: 2.3rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .profile-img {
+          width: 280px;
+          height: 280px;
+        }
+
+        .btn {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .typewriter h1 {
+          font-size: 1.8rem;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .hero-btns {
+          flex-direction: column;
+        }
+
+        .app-collage {
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: repeat(2, 1fr);
         }
 
         .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+          font-size: 0.85rem;
         }
 
-        .contact-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .contact-text h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .contact-form {
-            flex: 1;
-            background: rgba(30, 41, 59, 0.7);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(100, 116, 139, 0.2);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .contact-form.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(100, 116, 139, 0.3);
-            color: var(--light);
-            font-family: 'Poppins', sans-serif;
-            transition: var(--transition);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(15, 23, 42, 0.95);
-            padding: 2rem 5%;
-            text-align: center;
-            border-top: 1px solid rgba(100, 116, 139, 0.2);
-        }
-        
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: rgba(100, 116, 139, 0.3);
-            color: var(--light);
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-        
-        .social-icons a:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
-        }
-
-        .copyright {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* WhatsApp Button */
         .whatsapp-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--whatsapp);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 100;
-            transition: var(--transition);
-            animation: pulse 2s infinite;
+          width: 50px;
+          height: 50px;
+          font-size: 1.5rem;
+          bottom: 20px;
+          right: 20px;
         }
+      }
 
-        .whatsapp-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-            animation: none;
+      /* Additional fixes for typewriter */
+      @media (max-width: 1100px) {
+        .typewriter h1 {
+          font-size: 2.8rem;
         }
+      }
 
-        /* Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+      @media (max-width: 900px) {
+        .typewriter h1 {
+          font-size: 2.5rem;
         }
+      }
 
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+      @media (max-width: 768px) {
+        .typewriter h1 {
+          font-size: 2.2rem;
         }
+      }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1 }
-            50% { opacity: 0 }
+      @media (max-width: 576px) {
+        .typewriter h1 {
+          font-size: 1.9rem;
         }
+      }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+      @media (max-width: 400px) {
+        .typewriter h1 {
+          font-size: 1.6rem;
         }
+      }
 
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .floating {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .pulse {
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .typewriter h1 {
-                font-size: 3rem;
-            }
-            .section-title {
-                font-size: 2.3rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero-content {
-                margin-bottom: 3rem;
-            }
-
-            .about-container {
-                flex-direction: column;
-            }
-
-            .contact-container {
-                flex-direction: column;
-            }
-            
-            .typewriter h1 {
-                font-size: 2.7rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background: var(--dark);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding: 2rem 0;
-                gap: 2.5rem;
-                clip-path: circle(0px at 90% -10%);
-                transition: all 0.8s ease;
-            }
-
-            .nav-links.active {
-                clip-path: circle(1500px at 90% -10%);
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .typewriter h1 {
-                font-size: 2.3rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .profile-img {
-                width: 280px;
-                height: 280px;
-            }
-            
-            .btn {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .typewriter h1 {
-                font-size: 1.8rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-            }
-            
-            .app-collage {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(2, 1fr);
-            }
-            
-            .contact-item {
-                font-size: 0.85rem;
-            }
-
-            .whatsapp-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-
-        /* Additional fixes for typewriter */
-        @media (max-width: 1100px) {
-            .typewriter h1 {
-                font-size: 2.8rem;
-            }
-        }
-        
-        @media (max-width: 900px) {
-            .typewriter h1 {
-                font-size: 2.5rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .typewriter h1 {
-                font-size: 2.2rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .typewriter h1 {
-                font-size: 1.9rem;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .typewriter h1 {
-                font-size: 1.6rem;
-            }
-        }
-        
-        /* Skill adjustments */
-        .skills-container {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
+      /* Skill adjustments */
+      .skills-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="#" class="logo"><i class="fas fa-code"></i>SUBRATA<span>.</span></a>
-        <ul class="nav-links">
-            <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
-            <li><a href="#skills"><i class="fas fa-cogs"></i> Skills</a></li>
-            <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-            <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-        </ul>
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
+      <a href="#" class="logo"
+        ><i class="fas fa-code"></i>SUBRATA<span>.</span></a
+      >
+      <ul class="nav-links">
+        <li>
+          <a href="#home"><i class="fas fa-home"></i> Home</a>
+        </li>
+        <li>
+          <a href="#about"><i class="fas fa-user"></i> About</a>
+        </li>
+        <li>
+          <a href="#skills"><i class="fas fa-cogs"></i> Skills</a>
+        </li>
+        <li>
+          <a href="#projects"
+            ><i class="fas fa-project-diagram"></i> Projects</a
+          >
+        </li>
+        <li>
+          <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+        </li>
+      </ul>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
     </nav>
 
     <!-- Hero Section with Typewriter Effect -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="typewriter">
-                <h1>Hi, I'm Subrata Dey</h1>
-                <h1>React Native Developer</h1>
-            </div>
-            <p>I create beautiful, performant mobile applications that provide exceptional user experiences. With a passion for clean code and innovative solutions, I bring ideas to life on iOS and Android platforms.</p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn"><i class="fas fa-laptop-code"></i> View My Work</a>
-                <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Get In Touch</a>
-            </div>
+      <div class="hero-content">
+        <div class="typewriter">
+          <h1>Hi, I'm Subrata Dey</h1>
+          <h1>React Native Developer</h1>
         </div>
-        <div class="hero-image">
-            <div class="profile-img floating">
-                <img src="https://i.ibb.co/fVVDpgLc/IMG-20250616-135945-Copy.jpg" alt="Subrata Dey - React Native Developer">
-            </div>
+        <p>
+          I create beautiful, performant mobile applications that provide
+          exceptional user experiences. With a passion for clean code and
+          innovative solutions, I bring ideas to life on iOS and Android
+          platforms.
+        </p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn"
+            ><i class="fas fa-laptop-code"></i> View My Work</a
+          >
+          <a href="#contact" class="btn btn-outline"
+            ><i class="fas fa-paper-plane"></i> Get In Touch</a
+          >
         </div>
+      </div>
+      <div class="hero-image">
+        <div class="profile-img floating">
+          <img
+            src="https://i.ibb.co/fVVDpgLc/IMG-20250616-135945-Copy.jpg"
+            alt="Subrata Dey - React Native Developer"
+          />
+        </div>
+      </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about-section">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-container">
-            <div class="about-content">
-                <div class="about-header">
-                    <h2>SUBRATA DEY</h2>
-                    <h3>REACT NATIVE DEVELOPER</h3>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i> deysubrata698@gmail.com
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i> +91 7003539303
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-linkedin"></i> linkedin.com/in/subratadey
-                        </div>
-                    </div>
-                </div>
-                
-                <h4>Summary</h4>
-                <p>I am seeking a challenging position in an organization where I can contribute my ideas and can get an opportunity to learn new skills, expand my knowledge, and leverage my learnings.</p>
-                
-                <h4>Professional Experience</h4>
-                <div class="experience-item">
-                    <h5><i class="fas fa-briefcase"></i> React Native Developer at Sapco IOT Technologies (PVT LTD)</h5>
-                    <p>Dec 2023 - Present (Software company in Newtown, West Bengal)</p>
-                </div>
-                <div class="experience-item">
-                    <h5><i class="fas fa-briefcase"></i> Junior Software Engineer at Open Solutions for Education</h5>
-                    <p>May 2023 - Nov 2023 (Software company in Sector 5 SDF, West Bengal)</p>
-                </div>
-                
-                <h4>Mobile App Development</h4>
-                <ul>
-                    <li>React Native Development: Experienced in building cross-platform mobile applications using React Native with both Expo CLI and React Native CLI. Skilled in implementing React Navigation for seamless app flow and React Redux Toolkit for state management.</li>
-                    <li>Firebase Integration: Proficient in integrating Firebase for authentication, real-time databases, and cloud storage.</li>
-                    <li>API Integration: Experienced in integrating REST APIs using Axios library for efficient data fetching and management.</li>
-                </ul>
-                
-                <h4>Education</h4>
-                <div class="education-item">
-                    <h5><i class="fas fa-graduation-cap"></i> Chandigarh University, West Bengal</h5>
-                    <p>MCA (2024 - 2025)</p>
-                </div>
-                <div class="education-item">
-                    <h5><i class="fas fa-graduation-cap"></i> City College, Kolkata</h5>
-                    <p>Bachelor of Arts (2011 - 2014)</p>
-                    <p>Address: 102/1, Raja Ram Mohan Sarani Rd, Machuabazar, Kolkata, West Bengal 700009</p>
-                </div>
-                <div class="education-item">
-                    <h5><i class="fas fa-graduation-cap"></i> Kanti Chandra High School, Shyamnagar, West Bengal</h5>
-                    <p>Higher Secondary (2009 - 2011)</p>
-                </div>
-                
-                <h4>Licenses and Certifications</h4>
-                <p>React Native Developer at EJOB INDIA PVT.LTD</p>
-                
-                <div class="resume-btn-container">
-                    <a href="https://drive.google.com/uc?export=download&id=1Xn9WOA-5TEpmVUKsR9r78DrYKK8ZpjVG" class="btn btn-download pulse">
-                        <i class="fas fa-download"></i> Download Resume
-                    </a>
-                </div>
+      <h2 class="section-title">About Me</h2>
+      <div class="about-container">
+        <div class="about-content">
+          <div class="about-header">
+            <h2>SUBRATA DEY</h2>
+            <h3>REACT NATIVE DEVELOPER</h3>
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i> deysubrata698@gmail.com
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-phone"></i> +91 7003539303
+              </div>
+              <div class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                https://www.linkedin.com/in/subrata-dey-5b9820274/
+              </div>
             </div>
+          </div>
+
+          <h4>Summary</h4>
+          <p>
+            Motivated React Native Developer skilled in JavaScript (ES6+),
+            TypeScript, and UI development. Experienced in building
+            cross-platform mobile apps using React Native CLI and Expo CLI.
+            Proficient in Redux Toolkit, Firebase, RESTful APIs, and CI/CD
+            deployment pipelines. Strong understanding of mobile app performance
+            optimization.
+          </p>
+
+          <h4>Professional Experience</h4>
+          <div class="experience-item">
+            <h5>
+              <i class="fas fa-briefcase"></i>Software Developer at Delostyle Studio (PVT LTD)
+            </h5>
+            <p>Jun 2025 - Present (Software company in in Salt Lake Sector-V, West Bengal)</p>
+          </div>
+          <div class="experience-item">
+            <h5>
+              <i class="fas fa-briefcase"></i> React Native Developer at Sapco
+              IOT Technologies (PVT LTD)
+            </h5>
+            <p>Dec 2023 - Jun 2025 (Software company in Newtown, West Bengal)</p>
+          </div>
+          <div class="experience-item">
+            <h5>
+              <i class="fas fa-briefcase"></i> Junior Software Engineer at Open
+              Solutions for Education
+            </h5>
+            <p>
+              May 2023 - Nov 2023 (Software company in Sector 5 SDF, West
+              Bengal)
+            </p>
+          </div>
+
+          <h4>Mobile App Development</h4>
+          <ul>
+            <li>
+              React Native Development: Experienced in building cross-platform
+              mobile applications using React Native with both Expo CLI and
+              React Native CLI. Skilled in implementing React Navigation for
+              seamless app flow and React Redux Toolkit for state management.
+            </li>
+            <li>
+              Firebase Integration: Proficient in integrating Firebase for
+              authentication, real-time databases, and cloud storage.
+            </li>
+            <li>
+              API Integration: Experienced in integrating REST APIs using Axios
+              library for efficient data fetching and management.
+            </li>
+          </ul>
+
+          <h4>Education</h4>
+          <div class="education-item">
+            <h5>
+              <i class="fas fa-graduation-cap"></i> Chandigarh University, West
+              Bengal
+            </h5>
+            <p>MCA (2024 - 2025)</p>
+          </div>
+          <div class="education-item">
+            <h5><i class="fas fa-graduation-cap"></i> City College, Kolkata</h5>
+            <p>Bachelor of Arts (2011 - 2014)</p>
+            <p>
+              Address: 102/1, Raja Ram Mohan Sarani Rd, Machuabazar, Kolkata,
+              West Bengal 700009
+            </p>
+          </div>
+          <div class="education-item">
+            <h5>
+              <i class="fas fa-graduation-cap"></i> Kanti Chandra High School,
+              Shyamnagar, West Bengal
+            </h5>
+            <p>Higher Secondary (2009 - 2011)</p>
+          </div>
+
+          <h4>Licenses and Certifications</h4>
+          <p>React Native Developer at EJOB INDIA PVT.LTD</p>
+
+          <div class="resume-btn-container">
+            <a
+              href="https://drive.google.com/uc?export=download&id=1MjNJsCOiGQwOSVuWBPeYwbMzMpBP2Etu"
+              class="btn btn-download pulse"
+            >
+              <i class="fas fa-download"></i> Download Resume
+            </a>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills" class="skills-section">
-        <h2 class="section-title">My Skills</h2>
-        <div class="skills-container">
-            <div class="skill-card">
-                <i class="fab fa-react"></i>
-                <h3>React Native</h3>
-                <p>Expert in building cross-platform mobile apps with reusable components and native modules.</p>
-                <div class="skill-level">
-                    <div class="skill-progress" style="width: 95%"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <i class="fab fa-js"></i>
-                <h3>JavaScript & TypeScript</h3>
-                <p>Proficient in modern JavaScript practices with TypeScript for type-safe code.</p>
-                <div class="skill-level">
-                    <div class="skill-progress" style="width: 90%"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-mobile-alt"></i>
-                <h3>Mobile UI/UX Design</h3>
-                <p>Creating intuitive and responsive interfaces for exceptional user experiences.</p>
-                <div class="skill-level">
-                    <div class="skill-progress" style="width: 85%"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-server"></i>
-                <h3>API Integration</h3>
-                <p>Connecting mobile apps with backend services and third-party APIs.</p>
-                <div class="skill-level">
-                    <div class="skill-progress" style="width: 92%"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-fire"></i>
-                <h3>Firebase</h3>
-                <p>Implementing authentication, databases, and cloud functions for mobile apps.</p>
-                <div class="skill-level">
-                    <div class="skill-progress" style="width: 88%"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-sync-alt"></i>
-                <h3>State Management</h3>
-                <p>Expert in Redux and Context API for efficient state management.</p>
-                <div class="skill-level">
-                    <div class="skill-progress" style="width: 90%"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-route"></i>
-                <h3>React Router</h3>
-                <p>Implementing navigation and routing solutions in React applications.</p>
-                <div class="skill-level">
-                    <div class="skill-progress" style="width: 80%"></div>
-                </div>
-            </div>
-            <div class="skill-card">
-                <i class="fas fa-exchange-alt"></i>
-                <h3>REST API Integration</h3>
-                <p>Using Axios for efficient API communication and data management.</p>
-                <div class="skill-level">
-                    <div class="skill-progress" style="width: 90%"></div>
-                </div>
-            </div>
+      <h2 class="section-title">My Skills</h2>
+      <div class="skills-container">
+        <div class="skill-card">
+          <i class="fab fa-react"></i>
+          <h3>React Native</h3>
+          <p>
+            Expert in building cross-platform mobile apps with reusable
+            components and native modules.
+          </p>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 95%"></div>
+          </div>
         </div>
+        <div class="skill-card">
+          <i class="fab fa-js"></i>
+          <h3>JavaScript & TypeScript</h3>
+          <p>
+            Proficient in modern JavaScript practices with TypeScript for
+            type-safe code.
+          </p>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 90%"></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Mobile UI/UX Design</h3>
+          <p>
+            Creating intuitive and responsive interfaces for exceptional user
+            experiences.
+          </p>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 85%"></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-server"></i>
+          <h3>API Integration</h3>
+          <p>
+            Connecting mobile apps with backend services and third-party APIs.
+          </p>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 92%"></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-fire"></i>
+          <h3>Firebase</h3>
+          <p>
+            Implementing authentication, databases, and cloud functions for
+            mobile apps.
+          </p>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 88%"></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-sync-alt"></i>
+          <h3>State Management</h3>
+          <p>Expert in Redux and Context API for efficient state management.</p>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 90%"></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-route"></i>
+          <h3>React Router</h3>
+          <p>
+            Implementing navigation and routing solutions in React applications.
+          </p>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 80%"></div>
+          </div>
+        </div>
+        <div class="skill-card">
+          <i class="fas fa-exchange-alt"></i>
+          <h3>REST API Integration</h3>
+          <p>
+            Using Axios for efficient API communication and data management.
+          </p>
+          <div class="skill-level">
+            <div class="skill-progress" style="width: 90%"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="projects-section">
-        <h2 class="section-title">My Projects</h2>
-        <div class="projects-container">
-            <!-- HandyTrac App -->
-            <div class="project-card">
-                <div class="app-collage">
-                    <img class="collage-large" src="https://play-lh.googleusercontent.com/Gner8Ze_DAxMuKvDeznDW1_wwiN7cezIEVel-8tburC455AodCvEjGaduQbd95ql3bR9=w1052-h592-rw" alt="HandyTrac App">
-                    <img src="https://play-lh.googleusercontent.com/D0OoB7beDmra6dmPFbVW368K7i2Ky71z884d4xyqnl0mOxKwNXPGbW85NaGuXddWGig=w1052-h592-rw" alt="HandyTrac App">
-                    <img src="https://play-lh.googleusercontent.com/P8qRUIgbeur3yYVbu8g55wde2YPW9rSxdyLuVUWIXf_CfQB_DtxnnHUzz12qOtT_eFUO=w1052-h592-rw" alt="HandyTrac App">
-                    <img src="https://play-lh.googleusercontent.com/xFkrq9qi7FvFkE9av_F55FwLc3xqus4PKn_BCnQWnLe_gPdTAUUTDqtNK6n_mGmj7qg=w5120-h2880-rw" alt="HandyTrac App">
-                </div>
-                <div class="project-content">
-                    <h3><i class="fas fa-mobile-alt"></i> HandyTrac App</h3>
-                    <p>The HandyTrac app provides convenient access to your HandyTrac account to view reports, configure alerts, and manage employee access. HandyTrac provides a secure, archived Audit Trail of key activity so you can manage and track access to your units.</p>
-                    <div class="tech-stack">
-                        <span class="tech"><i class="fab fa-react"></i> React Native</span>
-                        <span class="tech"><i class="fas fa-database"></i> Firebase</span>
-                        <span class="tech"><i class="fas fa-code-branch"></i> Redux</span>
-                        <span class="tech"><i class="fas fa-map-marked-alt"></i> Google Maps API</span>
-                    </div>
-                    <div class="app-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.handytrac_app.sapco&hl=en_IN" target="_blank" class="app-link">
-                            <i class="fab fa-google-play"></i> View on Play Store
-                        </a>
-                    </div>
-                </div>
+      <h2 class="section-title">My Projects</h2>
+      <div class="projects-container">
+        <!-- HandyTrac App -->
+        <div class="project-card">
+          <div class="app-collage">
+            <img
+              class="collage-large"
+              src="https://play-lh.googleusercontent.com/Gner8Ze_DAxMuKvDeznDW1_wwiN7cezIEVel-8tburC455AodCvEjGaduQbd95ql3bR9=w1052-h592-rw"
+              alt="HandyTrac App"
+            />
+            <img
+              src="https://play-lh.googleusercontent.com/D0OoB7beDmra6dmPFbVW368K7i2Ky71z884d4xyqnl0mOxKwNXPGbW85NaGuXddWGig=w1052-h592-rw"
+              alt="HandyTrac App"
+            />
+            <img
+              src="https://play-lh.googleusercontent.com/P8qRUIgbeur3yYVbu8g55wde2YPW9rSxdyLuVUWIXf_CfQB_DtxnnHUzz12qOtT_eFUO=w1052-h592-rw"
+              alt="HandyTrac App"
+            />
+            <img
+              src="https://play-lh.googleusercontent.com/xFkrq9qi7FvFkE9av_F55FwLc3xqus4PKn_BCnQWnLe_gPdTAUUTDqtNK6n_mGmj7qg=w5120-h2880-rw"
+              alt="HandyTrac App"
+            />
+          </div>
+          <div class="project-content">
+            <h3><i class="fas fa-mobile-alt"></i> HandyTrac App</h3>
+            <p>
+              The HandyTrac app provides convenient access to your HandyTrac
+              account to view reports, configure alerts, and manage employee
+              access. HandyTrac provides a secure, archived Audit Trail of key
+              activity so you can manage and track access to your units.
+            </p>
+            <div class="tech-stack">
+              <span class="tech"
+                ><i class="fab fa-react"></i> React Native</span
+              >
+              <span class="tech"><i class="fas fa-database"></i> Firebase</span>
+              <span class="tech"><i class="fas fa-code-branch"></i> Redux</span>
+              <span class="tech"
+                ><i class="fas fa-map-marked-alt"></i> Google Maps API</span
+              >
             </div>
-
-            <!-- SkillWiz App -->
-            <div class="project-card">
-                <div class="app-collage">
-                    <img src="https://play-lh.googleusercontent.com/57hwjlRxvjgPI5Mv8ftSUPjhONbwQTjyeo5_Savz-ELFhiDJIJ_N0MqY9lwE-X7KnNPE=w1052-h592-rw" alt="SkillWiz App">
-                    <img class="collage-large" src="https://play-lh.googleusercontent.com/R_sYJ1PqpZYP1MknZDy7kQVJ2MLVaCO9niilDUo9jB0eqLSeB6putw1i84r_9HmOFK0=w1052-h592-rw" alt="SkillWiz App">
-                    <img src="https://play-lh.googleusercontent.com/3m9r72buxxXSkYIy8D4YPUh6Eh8bhGKu0APM_QuhH3qjBSufBv-lc7P_UpC35AuB-7I=w1052-h592-rw" alt="SkillWiz App">
-                    <img src="https://play-lh.googleusercontent.com/1rBhCDawDtljEAutOzi9UbXJPL-r3mI_FzMSE6rd7y34jyXcVRKBu0Dn8FRahhXHdg=w1052-h592-rw" alt="SkillWiz App">
-                </div>
-                <div class="project-content">
-                    <h3><i class="fas fa-graduation-cap"></i> SkillWiz App</h3>
-                    <p>SkillWiz is a dynamic, AI-powered platform that transforms education into an inspiring journey. We empower learners to elevate their skills through a seamless, accessible, and personalized learning ecosystem. Optimized for all devices, SkillWiz delivers a fluid, anytime-anywhere experience.</p>
-                    <div class="tech-stack">
-                        <span class="tech"><i class="fab fa-react"></i> React Native</span>
-                        <span class="tech"><i class="fab fa-node-js"></i> Node.js</span>
-                        <span class="tech"><i class="fas fa-database"></i> MongoDB</span>
-                        <span class="tech"><i class="fas fa-robot"></i> AI Integration</span>
-                    </div>
-                    <div class="app-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.skillwiz.sapco&hl=en_IN" target="_blank" class="app-link">
-                            <i class="fab fa-google-play"></i> View on Play Store
-                        </a>
-                    </div>
-                </div>
+            <div class="app-links">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.handytrac_app.sapco&hl=en_IN"
+                target="_blank"
+                class="app-link"
+              >
+                <i class="fab fa-google-play"></i> View on Play Store
+              </a>
             </div>
-
-            <!-- Call Blocking App -->
-            <div class="project-card">
-                <div class="app-collage">
-                    <img class="collage-large" src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Call Blocking App">
-                    <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Call Blocking App">
-                    <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Call Blocking App">
-                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Call Blocking App">
-                </div>
-                <div class="project-content">
-                    <h3><i class="fas fa-phone-alt"></i> Call Blocking App</h3>
-                    <p>Created a React Native call blocking application specifically for Android for a client. The application uses Android's ConnectionService to manage the blocking of incoming calls. Devoted to providing a seamless user experience with the integration of native modules for Android-specific telephony services.</p>
-                    <div class="tech-stack">
-                        <span class="tech"><i class="fab fa-react"></i> React Native</span>
-                        <span class="tech"><i class="fas fa-android"></i> Android Native</span>
-                        <span class="tech"><i class="fas fa-server"></i> ConnectionService</span>
-                        <span class="tech"><i class="fas fa-tools"></i> Native Modules</span>
-                    </div>
-                    <p class="project-note">
-                        <i class="fas fa-info-circle"></i> Note: Developed for a client - not publicly available
-                    </p>
-                </div>
-            </div>
-
-            <!-- Roof Top Measurement App -->
-            <div class="project-card">
-                <div class="app-collage">
-                    <img class="collage-large" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Roof Top Measurement App">
-                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Roof Top Measurement App">
-                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Roof Top Measurement App">
-                    <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Roof Top Measurement App">
-                </div>
-                <div class="project-content">
-                    <h3><i class="fas fa-ruler-combined"></i> Roof Top Measurement App</h3>
-                    <p>Developed a Roof Top Measurement App using React Native. The app integrates multiple technologies to provide a seamless user experience for measuring rooftop areas with location-based services.</p>
-                    <div class="tech-stack">
-                        <span class="tech"><i class="fab fa-react"></i> React Native</span>
-                        <span class="tech"><i class="fas fa-map-marked-alt"></i> React Native Map</span>
-                        <span class="tech"><i class="fab fa-google"></i> Google Places</span>
-                        <span class="tech"><i class="fas fa-fire"></i> Firebase</span>
-                    </div>
-                    <p class="project-note">
-                        <i class="fas fa-info-circle"></i> Note: Developed for internal company use
-                    </p>
-                </div>
-            </div>
-
-            <!-- Perfectice App -->
-            <div class="project-card">
-                <div class="app-collage">
-                    <img class="collage-large" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Perfectice App">
-                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Perfectice App">
-                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Perfectice App">
-                    <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Perfectice App">
-                </div>
-                <div class="project-content">
-                    <h3><i class="fas fa-graduation-cap"></i> Perfectice</h3>
-                    <p>An app was developed for the educational institution "Perfectice" using React Native for both Android and iOS platforms. The project involved redesigning the user interface (UI), API integration using Axios, and implementing the React Native Camera for capturing functionalities.</p>
-                    <div class="tech-stack">
-                        <span class="tech"><i class="fab fa-react"></i> React Native</span>
-                        <span class="tech"><i class="fas fa-camera"></i> React Native Camera</span>
-                        <span class="tech"><i class="fas fa-code-branch"></i> Redux Toolkit</span>
-                        <span class="tech"><i class="fas fa-server"></i> Axios API</span>
-                    </div>
-                    <p class="project-note">
-                        <i class="fas fa-info-circle"></i> Note: Under development - not yet published
-                    </p>
-                </div>
-            </div>
-
-            <!-- Click4Driver App -->
-            <div class="project-card">
-                <div class="app-collage">
-                    <img class="collage-large" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Click4Driver App">
-                    <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Click4Driver App">
-                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Click4Driver App">
-                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Click4Driver App">
-                </div>
-                <div class="project-content">
-                    <h3><i class="fas fa-car"></i> Click4Driver</h3>
-                    <p>A car booking service app developed using React Native for car owners to hire drivers. The app involves two separate components: one for car owners to manage bookings and one for drivers to accept requests.</p>
-                    <div class="tech-stack">
-                        <span class="tech"><i class="fab fa-react"></i> React Native</span>
-                        <span class="tech"><i class="fas fa-camera"></i> Vision Camera</span>
-                        <span class="tech"><i class="fas fa-map-marked-alt"></i> React Native Map</span>
-                        <span class="tech"><i class="fab fa-node-js"></i> Node.js</span>
-                    </div>
-                    <p class="project-note">
-                        <i class="fas fa-info-circle"></i> Note: Currently in development
-                    </p>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <!-- SkillWiz App -->
+        <div class="project-card">
+          <div class="app-collage">
+            <img
+              src="https://play-lh.googleusercontent.com/57hwjlRxvjgPI5Mv8ftSUPjhONbwQTjyeo5_Savz-ELFhiDJIJ_N0MqY9lwE-X7KnNPE=w1052-h592-rw"
+              alt="SkillWiz App"
+            />
+            <img
+              class="collage-large"
+              src="https://play-lh.googleusercontent.com/R_sYJ1PqpZYP1MknZDy7kQVJ2MLVaCO9niilDUo9jB0eqLSeB6putw1i84r_9HmOFK0=w1052-h592-rw"
+              alt="SkillWiz App"
+            />
+            <img
+              src="https://play-lh.googleusercontent.com/3m9r72buxxXSkYIy8D4YPUh6Eh8bhGKu0APM_QuhH3qjBSufBv-lc7P_UpC35AuB-7I=w1052-h592-rw"
+              alt="SkillWiz App"
+            />
+            <img
+              src="https://play-lh.googleusercontent.com/1rBhCDawDtljEAutOzi9UbXJPL-r3mI_FzMSE6rd7y34jyXcVRKBu0Dn8FRahhXHdg=w1052-h592-rw"
+              alt="SkillWiz App"
+            />
+          </div>
+          <div class="project-content">
+            <h3><i class="fas fa-graduation-cap"></i> SkillWiz App</h3>
+            <p>
+              SkillWiz is a dynamic, AI-powered platform that transforms
+              education into an inspiring journey. We empower learners to
+              elevate their skills through a seamless, accessible, and
+              personalized learning ecosystem. Optimized for all devices,
+              SkillWiz delivers a fluid, anytime-anywhere experience.
+            </p>
+            <div class="tech-stack">
+              <span class="tech"
+                ><i class="fab fa-react"></i> React Native</span
+              >
+              <span class="tech"><i class="fab fa-node-js"></i> Node.js</span>
+              <span class="tech"><i class="fas fa-database"></i> MongoDB</span>
+              <span class="tech"
+                ><i class="fas fa-robot"></i> AI Integration</span
+              >
+            </div>
+            <div class="app-links">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.skillwiz.sapco&hl=en_IN"
+                target="_blank"
+                class="app-link"
+              >
+                <i class="fab fa-google-play"></i> View on Play Store
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call Blocking App -->
+        <div class="project-card">
+          <div class="app-collage">
+            <img
+              class="collage-large"
+              src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Call Blocking App"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Call Blocking App"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Call Blocking App"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Call Blocking App"
+            />
+          </div>
+          <div class="project-content">
+            <h3><i class="fas fa-phone-alt"></i> Call Blocking App</h3>
+            <p>
+              Created a React Native call blocking application specifically for
+              Android for a client. The application uses Android's
+              ConnectionService to manage the blocking of incoming calls.
+              Devoted to providing a seamless user experience with the
+              integration of native modules for Android-specific telephony
+              services.
+            </p>
+            <div class="tech-stack">
+              <span class="tech"
+                ><i class="fab fa-react"></i> React Native</span
+              >
+              <span class="tech"
+                ><i class="fas fa-android"></i> Android Native</span
+              >
+              <span class="tech"
+                ><i class="fas fa-server"></i> ConnectionService</span
+              >
+              <span class="tech"
+                ><i class="fas fa-tools"></i> Native Modules</span
+              >
+            </div>
+            <p class="project-note">
+              <i class="fas fa-info-circle"></i> Note: Developed for a client -
+              not publicly available
+            </p>
+          </div>
+        </div>
+
+        <!-- Roof Top Measurement App -->
+        <div class="project-card">
+          <div class="app-collage">
+            <img
+              class="collage-large"
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Roof Top Measurement App"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Roof Top Measurement App"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Roof Top Measurement App"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Roof Top Measurement App"
+            />
+          </div>
+          <div class="project-content">
+            <h3>
+              <i class="fas fa-ruler-combined"></i> Roof Top Measurement App
+            </h3>
+            <p>
+              Developed a Roof Top Measurement App using React Native. The app
+              integrates multiple technologies to provide a seamless user
+              experience for measuring rooftop areas with location-based
+              services.
+            </p>
+            <div class="tech-stack">
+              <span class="tech"
+                ><i class="fab fa-react"></i> React Native</span
+              >
+              <span class="tech"
+                ><i class="fas fa-map-marked-alt"></i> React Native Map</span
+              >
+              <span class="tech"
+                ><i class="fab fa-google"></i> Google Places</span
+              >
+              <span class="tech"><i class="fas fa-fire"></i> Firebase</span>
+            </div>
+            <p class="project-note">
+              <i class="fas fa-info-circle"></i> Note: Developed for internal
+              company use
+            </p>
+          </div>
+        </div>
+
+        <!-- Perfectice App -->
+        <div class="project-card">
+          <div class="app-collage">
+            <img
+              class="collage-large"
+              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Perfectice App"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Perfectice App"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Perfectice App"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Perfectice App"
+            />
+          </div>
+          <div class="project-content">
+            <h3><i class="fas fa-graduation-cap"></i> Perfectice</h3>
+            <p>
+              An app was developed for the educational institution "Perfectice"
+              using React Native for both Android and iOS platforms. The project
+              involved redesigning the user interface (UI), API integration
+              using Axios, and implementing the React Native Camera for
+              capturing functionalities.
+            </p>
+            <div class="tech-stack">
+              <span class="tech"
+                ><i class="fab fa-react"></i> React Native</span
+              >
+              <span class="tech"
+                ><i class="fas fa-camera"></i> React Native Camera</span
+              >
+              <span class="tech"
+                ><i class="fas fa-code-branch"></i> Redux Toolkit</span
+              >
+              <span class="tech"><i class="fas fa-server"></i> Axios API</span>
+            </div>
+            <p class="project-note">
+              <i class="fas fa-info-circle"></i> Note: Under development - not
+              yet published
+            </p>
+          </div>
+        </div>
+
+        <!-- Click4Driver App -->
+        <div class="project-card">
+          <div class="app-collage">
+            <img
+              class="collage-large"
+              src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Click4Driver App"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Click4Driver App"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Click4Driver App"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+              alt="Click4Driver App"
+            />
+          </div>
+          <div class="project-content">
+            <h3><i class="fas fa-car"></i> Click4Driver</h3>
+            <p>
+              A car booking service app developed using React Native for car
+              owners to hire drivers. The app involves two separate components:
+              one for car owners to manage bookings and one for drivers to
+              accept requests.
+            </p>
+            <div class="tech-stack">
+              <span class="tech"
+                ><i class="fab fa-react"></i> React Native</span
+              >
+              <span class="tech"
+                ><i class="fas fa-camera"></i> Vision Camera</span
+              >
+              <span class="tech"
+                ><i class="fas fa-map-marked-alt"></i> React Native Map</span
+              >
+              <span class="tech"><i class="fab fa-node-js"></i> Node.js</span>
+            </div>
+            <p class="project-note">
+              <i class="fas fa-info-circle"></i> Note: Currently in development
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <div class="contact-card">
-                    <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-address-card"></i> Contact Information
-                    </h3>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <p>deysubrata698@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Phone</h4>
-                            <p>+91 70035 39303</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Location</h4>
-                            <p>Shyamnagar, Kowgachi More<br>Pin: 743127, N 24 PGS</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Working Hours</h4>
-                            <p>Mon-Fri: 9AM - 6PM</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-card">
-                    <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
-                        <i class="fas fa-map-marker-alt"></i> Location
-                    </h3>
-                    <div style="width: 100%; height: 200px; border-radius: 10px; overflow: hidden;">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58925.35139237396!2d88.355288!3d22.7087765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89c3c2c5e0b3b%3A0x6c4d3f8d8d8d8d8d!2sShyamnagar%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1717099999999!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <div class="contact-card">
+            <h3
+              style="
+                margin-bottom: 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+              "
+            >
+              <i class="fas fa-address-card"></i> Contact Information
+            </h3>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Email</h4>
+                <p>deysubrata698@gmail.com</p>
+              </div>
             </div>
-            
-            <form id="contactForm" class="contact-form">
-                <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-comments"></i> Send Me a Message
-                </h3>
-                <div class="form-group">
-                    <label for="name"><i class="fas fa-user"></i> Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject"><i class="fas fa-tag"></i> Subject</label>
-                    <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
-                </div>
-                <div class="form-group">
-                    <label for="message"><i class="fas fa-comment"></i> Message</label>
-                    <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
-                </div>
-                <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Message</button>
-            </form>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Phone</h4>
+                <p>+91 70035 39303</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Location</h4>
+                <p>Shyamnagar, Kowgachi More<br />Pin: 743127, N 24 PGS</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Working Hours</h4>
+                <p>Mon-Fri: 9AM - 6PM</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-card">
+            <h3
+              style="
+                margin-bottom: 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+              "
+            >
+              <i class="fas fa-map-marker-alt"></i> Location
+            </h3>
+            <div
+              style="
+                width: 100%;
+                height: 200px;
+                border-radius: 10px;
+                overflow: hidden;
+              "
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58925.35139237396!2d88.355288!3d22.7087765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89c3c2c5e0b3b%3A0x6c4d3f8d8d8d8d8d!2sShyamnagar%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1717099999999!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
         </div>
+
+        <form id="contactForm" class="contact-form">
+          <h3
+            style="
+              margin-bottom: 1.5rem;
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            "
+          >
+            <i class="fas fa-comments"></i> Send Me a Message
+          </h3>
+          <div class="form-group">
+            <label for="name"><i class="fas fa-user"></i> Full Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="email"
+              ><i class="fas fa-envelope"></i> Email Address</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="Enter subject"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="message"><i class="fas fa-comment"></i> Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Enter your message"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" class="btn">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="social-icons">
-            <a href="https://www.linkedin.com/in/subrata-dey-5b9820274/" target="_blank" title="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://github.com/tpsubdey33" target="_blank" title="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.facebook.com/subrata.dey.503299" target="_blank" title="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="mailto:deysubrata698@gmail.com" target="_blank" title="Email">
-                <i class="fas fa-envelope"></i>
-            </a>
-        </div>
-        <p class="copyright">© 2025 Subrata Dey. All rights reserved.</p>
+      <div class="social-icons">
+        <a
+          href="https://www.linkedin.com/in/subrata-dey-5b9820274/"
+          target="_blank"
+          title="LinkedIn"
+        >
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://github.com/tpsubdey33" target="_blank" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a
+          href="https://www.facebook.com/subrata.dey.503299"
+          target="_blank"
+          title="Facebook"
+        >
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="mailto:deysubrata698@gmail.com" target="_blank" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+      <p class="copyright">© 2025 Subrata Dey. All rights reserved.</p>
     </footer>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/917003539303" class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+    <a
+      href="https://wa.me/917003539303"
+      class="whatsapp-btn"
+      target="_blank"
+      title="Chat on WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-        // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        const navbar = document.querySelector('.navbar');
+      // Mobile menu toggle
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+      const navbar = document.querySelector(".navbar");
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
+      hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        hamburger.classList.toggle("active");
+      });
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 100) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                navLinks.classList.remove('active');
-                hamburger.classList.remove('active');
-                
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          navLinks.classList.remove("active");
+          hamburger.classList.remove("active");
+
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
             });
+          }
         });
+      });
 
-        // Form submission
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Prepare email content
-            const emailBody = `
+      // Form submission
+      const contactForm = document.getElementById("contactForm");
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Get form values
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const subject = document.getElementById("subject").value;
+        const message = document.getElementById("message").value;
+
+        // Prepare email content
+        const emailBody = `
                 Name: ${name}
                 Email: ${email}
                 Subject: ${subject}
                 Message: ${message}
             `;
-            
-            // Create mailto link
-            const mailtoLink = `mailto:deysubrata698@gmail.com?subject=Portfolio Contact: ${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-            
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            alert(`Thank you ${name}! Your message has been prepared. Please send it from your email client.`);
-            
-            // Reset form
-            contactForm.reset();
+
+        // Create mailto link
+        const mailtoLink = `mailto:deysubrata698@gmail.com?subject=Portfolio Contact: ${encodeURIComponent(
+          subject
+        )}&body=${encodeURIComponent(emailBody)}`;
+
+        // Open email client
+        window.location.href = mailtoLink;
+
+        // Show success message
+        alert(
+          `Thank you ${name}! Your message has been prepared. Please send it from your email client.`
+        );
+
+        // Reset form
+        contactForm.reset();
+      });
+
+      // Typewriter effect with cursor removal
+      const typewriterLines = document.querySelectorAll(".typewriter h1");
+      setTimeout(() => {
+        typewriterLines[0].classList.add("typing-complete");
+      }, 1800);
+
+      setTimeout(() => {
+        typewriterLines[1].classList.add("typing-complete");
+      }, 4000);
+
+      // Animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          }
+        });
+      }, observerOptions);
+
+      // Animate all sections
+      document
+        .querySelectorAll(
+          ".section-title, .about-content, .skill-card, .project-card, .contact-card, .contact-form"
+        )
+        .forEach((el) => {
+          observer.observe(el);
         });
 
-        // Typewriter effect with cursor removal
-        const typewriterLines = document.querySelectorAll('.typewriter h1');
-        setTimeout(() => {
-            typewriterLines[0].classList.add('typing-complete');
-        }, 1800);
-        
-        setTimeout(() => {
-            typewriterLines[1].classList.add('typing-complete');
-        }, 4000);
-
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        // Animate all sections
-        document.querySelectorAll('.section-title, .about-content, .skill-card, .project-card, .contact-card, .contact-form').forEach(el => {
-            observer.observe(el);
+      // Animate skill progress bars
+      const skillCards = document.querySelectorAll(".skill-card");
+      skillCards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          const progress = card.querySelector(".skill-progress");
+          progress.style.width = progress.style.width;
         });
+      });
 
-        // Animate skill progress bars
-        const skillCards = document.querySelectorAll('.skill-card');
-        skillCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                const progress = card.querySelector('.skill-progress');
-                progress.style.width = progress.style.width;
-            });
-        });
+      // Floating animation for profile image
+      const profileImg = document.querySelector(".profile-img");
+      window.addEventListener("scroll", () => {
+        const scrollPosition = window.scrollY;
+        profileImg.style.transform = `translateY(${scrollPosition * 0.1}px)`;
+      });
 
-        // Floating animation for profile image
-        const profileImg = document.querySelector('.profile-img');
-        window.addEventListener('scroll', () => {
-            const scrollPosition = window.scrollY;
-            profileImg.style.transform = `translateY(${scrollPosition * 0.1}px)`;
-        });
-
-        // Initialize animations on page load
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.section-title, .about-content, .skill-card, .project-card, .contact-card, .contact-form').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight * 0.8) {
-                    el.classList.add('animate');
-                }
-            });
-        });
+      // Initialize animations on page load
+      window.addEventListener("load", () => {
+        document
+          .querySelectorAll(
+            ".section-title, .about-content, .skill-card, .project-card, .contact-card, .contact-form"
+          )
+          .forEach((el) => {
+            if (el.getBoundingClientRect().top < window.innerHeight * 0.8) {
+              el.classList.add("animate");
+            }
+          });
+      });
     </script>
-</body>
+  </body>
 </html>
